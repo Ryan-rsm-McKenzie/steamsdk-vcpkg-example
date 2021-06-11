@@ -1,0 +1,7 @@
+{
+  "name": "example",
+  "version-string": "1",
+  "dependencies": [
+    "steam-sdk"
+  ]
+}
