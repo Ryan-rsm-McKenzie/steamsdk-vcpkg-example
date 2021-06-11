@@ -2,10 +2,12 @@ if(NOT DEFINED ENV{STEAMWORKS_SDK})
 	message(FATAL_ERROR "environment variable STEAMWORKS_SDK is not set")
 endif()
 
+cmake_path(SET STEAMWORKS_SDK NORMALIZE $ENV{STEAMWORKS_SDK})
+
 string(REGEX MATCH
 	"steamworks_sdk_([0-9])([0-9]+)$"
 	REGEX_SUCCESS
-	$ENV{STEAMWORKS_SDK}
+	${STEAMWORKS_SDK}
 )
 string(LENGTH ${REGEX_SUCCESS} REGEX_SUCCESS_LEN)
 if(NOT REGEX_SUCCESS_LEN GREATER 0)
@@ -19,7 +21,7 @@ set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src)
 
 file(
 	COPY
-		$ENV{STEAMWORKS_SDK}/sdk/public
+		${STEAMWORKS_SDK}/sdk/public
 		${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt
 		${CMAKE_CURRENT_LIST_DIR}/config.cmake.in
 	DESTINATION
@@ -41,4 +43,4 @@ vcpkg_cmake_config_fixup(
 
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 
-file(INSTALL $ENV{STEAMWORKS_SDK}/sdk/Readme.txt DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
+file(INSTALL ${STEAMWORKS_SDK}/sdk/Readme.txt DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
