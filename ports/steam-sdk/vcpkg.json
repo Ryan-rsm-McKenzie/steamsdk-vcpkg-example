@@ -1,6 +1,6 @@
 {
   "name": "steam-sdk",
-  "version-semver": "1.34.0",
+  "version-string": "1",
   "dependencies": [
     {
       "name": "vcpkg-cmake",
